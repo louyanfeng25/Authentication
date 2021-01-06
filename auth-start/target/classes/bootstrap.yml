@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: auth
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP
+        fileExtension: yaml
+        shared-configs[0]:
+          data-id: application.yaml
+          group: DEFAULT_GROUP
+          refresh: true
+      discovery:
+        server-addr: 127.0.0.1:8848
+    config:
+      override-none: true
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000

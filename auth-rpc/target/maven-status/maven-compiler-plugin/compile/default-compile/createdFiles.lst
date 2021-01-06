@@ -1,0 +1,9 @@
+com/baiyan/auth/rpc/rpc/UserApiClient$UserFallback.class
+com/baiyan/auth/rpc/config/AuthFeignConfig.class
+com/baiyan/auth/rpc/rpc/AccessApiClient.class
+com/baiyan/auth/rpc/config/ClientConstants.class
+com/baiyan/auth/rpc/config/ClientConstants$Access.class
+com/baiyan/auth/rpc/config/AuthFeignClientAutoConfiguration.class
+com/baiyan/auth/rpc/config/ClientConstants$User.class
+com/baiyan/auth/rpc/rpc/UserApiClient.class
+com/baiyan/auth/rpc/rpc/AccessApiClient$AccessFallback.class
