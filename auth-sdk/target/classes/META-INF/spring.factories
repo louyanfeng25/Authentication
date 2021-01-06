@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.baiyan.auth.sdk.configuration.WebResourceConfiguration,\
-  com.baiyan.auth.sdk.configuration.TokenAuthenticationResourceConfiguration

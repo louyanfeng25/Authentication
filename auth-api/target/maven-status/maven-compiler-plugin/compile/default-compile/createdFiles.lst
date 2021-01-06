@@ -1,9 +1,0 @@
-com/baiyan/auth/api/model/user/UserDTO.class
-com/baiyan/auth/api/model/permission/PermissionDTO.class
-com/baiyan/auth/api/api/AccessApi.class
-com/baiyan/auth/api/enums/UserStateEnum.class
-com/baiyan/auth/api/constant/AuthConstant.class
-com/baiyan/auth/api/config/VersionConfig.class
-com/baiyan/auth/api/api/UserApi.class
-com/baiyan/auth/api/enums/MenuTypeEnum.class
-com/baiyan/auth/api/model/role/RoleDTO.class
