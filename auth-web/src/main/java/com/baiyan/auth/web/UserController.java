@@ -69,33 +69,33 @@ public class UserController {
     }
 
     @ApiOperation(value = "用户状态修改")
-    @PutMapping("/state")
+    @PutMapping("/state/{id}")
     @PreAuthorize("hasAuthority('user_state_update')")
-    public Result<Object> updateState(@RequestParam Long id,@RequestParam Integer state) {
+    public Result<Object> updateState(@PathVariable Long id,@RequestParam Integer state) {
         userService.updateState(id,state);
         return Result.ok("状态修改成功");
     }
 
     @ApiOperation(value = "重置用户密码")
-    @PutMapping("/resetPassword")
+    @PutMapping("/resetPassword/{id}")
     @PreAuthorize("hasAuthority('user_reset_password')")
-    public Result<String> resetPassword(@RequestParam Long id) {
+    public Result<String> resetPassword(@PathVariable Long id) {
         String password = userService.resetPassword(id);
         return Result.success(password,"重置用户密码成功");
     }
 
     @ApiOperation(value = "用户删除")
-    @DeleteMapping
+    @DeleteMapping("{id}")
     @PreAuthorize("hasAuthority('user_delete')")
-    public Result<Object> delete(@RequestParam Long id) {
+    public Result<Object> delete(@PathVariable Long id) {
         userService.delete(id);
         return Result.ok("删除成功");
     }
 
     @ApiOperation(value = "用户详情")
-    @GetMapping("detail")
+    @GetMapping("{id}")
     @PreAuthorize("hasAuthority('user_detail')")
-    public Result<UserDetailDTO> detail(@RequestParam Long id) {
+    public Result<UserDetailDTO> detail(@PathVariable Long id) {
         return Result.success(userService.detail(id));
     }
 

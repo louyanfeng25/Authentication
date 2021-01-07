@@ -63,9 +63,9 @@ public class RoleController {
     }
 
     @ApiOperation(value = "角色详情")
-    @GetMapping("detail")
+    @GetMapping("{id}")
     @PreAuthorize("hasAuthority('role_detail')")
-    public Result<RoleDetailDTO> detail(@RequestParam Long id) {
+    public Result<RoleDetailDTO> detail(@PathVariable Long id) {
         return Result.success(roleService.detail(id));
     }
 
