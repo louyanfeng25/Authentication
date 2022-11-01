@@ -1,9 +1,9 @@
 package com.baiyan.auth.service.service.impl;
 
-import com.baiyan.auth.common.utils.GsonUtil;
-import com.baiyan.auth.common.utils.StringUtil;
 import com.baiyan.auth.service.service.TokenStoreService;
 import com.baiyan.auth.service.utils.TokenUtil;
+import com.baiyan.common.base.utils.GsonUtil;
+import com.baiyan.common.base.utils.StringUtil;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,9 @@
 package com.baiyan.auth.service.mapper;
 
-import com.baiyan.auth.common.model.query.KeywordQuery;
-import com.baiyan.auth.common.result.Page;
 import com.baiyan.auth.service.model.role.bo.RoleBO;
 import com.baiyan.auth.service.model.role.po.RolePO;
+import com.baiyan.common.base.model.query.KeywordQuery;
+import com.baiyan.common.base.result.Page;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

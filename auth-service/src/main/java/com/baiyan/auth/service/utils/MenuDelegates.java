@@ -2,10 +2,10 @@ package com.baiyan.auth.service.utils;
 
 
 import com.baiyan.auth.api.enums.MenuTypeEnum;
-import com.baiyan.auth.common.utils.tree.TreeFactory;
-import com.baiyan.auth.common.utils.tree.TreeUtils;
 import com.baiyan.auth.service.model.menu.dto.MenuDTO;
 import com.baiyan.auth.service.model.menu.po.MenuPO;
+import com.baiyan.common.base.utils.tree.TreeFactory;
+import com.baiyan.common.base.utils.tree.TreeUtils;
 
 import java.util.List;
 import java.util.Objects;

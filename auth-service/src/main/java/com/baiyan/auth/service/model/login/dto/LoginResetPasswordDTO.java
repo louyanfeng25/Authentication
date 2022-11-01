@@ -1,8 +1,8 @@
 package com.baiyan.auth.service.model.login.dto;
 
-import com.baiyan.auth.common.utils.HttpRequestUtil;
 import com.baiyan.auth.service.model.login.vo.LoginResetPasswordVO;
 import com.baiyan.auth.service.utils.PasswordUtil;
+import com.baiyan.common.base.utils.HttpRequestUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

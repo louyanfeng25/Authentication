@@ -1,9 +1,9 @@
 package com.baiyan.auth.service.model.login.po;
 
-import com.baiyan.auth.common.model.po.BaseUuidEntity;
 import com.baiyan.auth.service.enums.AuthLoginTypeEnum;
 import com.baiyan.auth.service.model.login.dto.LoginDTO;
 import com.baiyan.auth.service.model.user.po.UserPO;
+import com.baiyan.common.base.model.po.BaseUuidEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 

@@ -4,12 +4,6 @@ import com.baiyan.auth.api.enums.MenuTypeEnum;
 import com.baiyan.auth.api.enums.UserStateEnum;
 import com.baiyan.auth.api.model.permission.PermissionDTO;
 import com.baiyan.auth.api.model.user.UserDTO;
-import com.baiyan.auth.common.constant.RegexpConstant;
-import com.baiyan.auth.common.model.query.KeywordQuery;
-import com.baiyan.auth.common.result.Page;
-import com.baiyan.auth.common.utils.CollectionUtil;
-import com.baiyan.auth.common.utils.JavaUtil;
-import com.baiyan.auth.common.utils.ValidationUtil;
 import com.baiyan.auth.sdk.extractor.token.BearerTokenAuthExtractorProvider;
 import com.baiyan.auth.sdk.util.ThreadLocalUtil;
 import com.baiyan.auth.service.enums.YesNoEnum;
@@ -19,6 +13,12 @@ import com.baiyan.auth.service.model.user.dto.*;
 import com.baiyan.auth.service.model.user.po.UserPO;
 import com.baiyan.auth.service.service.*;
 import com.baiyan.auth.service.utils.PasswordUtil;
+import com.baiyan.common.base.constant.RegexpConstant;
+import com.baiyan.common.base.model.query.KeywordQuery;
+import com.baiyan.common.base.result.Page;
+import com.baiyan.common.base.utils.CollectionUtils;
+import com.baiyan.common.base.utils.JavaUtil;
+import com.baiyan.common.base.utils.ValidationUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
@@ -178,7 +178,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
         UserAuthDTO userAuthDTO = new UserAuthDTO();
         BeanUtils.copyProperties(user,userAuthDTO);
         //按钮权限
-        JavaUtil.getJavaUtil().acceptIfCondition(CollectionUtil.isNotEmpty(user.getPermissions()),
+        JavaUtil.getJavaUtil().acceptIfCondition(CollectionUtils.isNotEmpty(user.getPermissions()),
                 user.getPermissions(),value->{
                     List<String> buttons = value.stream().filter(dto -> Objects.equals(dto.getType(), MenuTypeEnum.BUTTON.getKey()))
                             .map(PermissionDTO::getCode).collect(Collectors.toList());
@@ -202,8 +202,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
         //删除角色
         List<Long> remove = roleIds.stream().filter(e->!updateRoleIds.contains(e)).collect(Collectors.toList());
         JavaUtil.getJavaUtil()
-                .acceptIfCondition(CollectionUtil.isNotEmpty(add),add,value->roleService.addRoles(id,value))
-                .acceptIfCondition(CollectionUtil.isNotEmpty(remove),remove,value->roleService.removeRoles(id,remove));
+                .acceptIfCondition(CollectionUtils.isNotEmpty(add),add, value->roleService.addRoles(id,value))
+                .acceptIfCondition(CollectionUtils.isNotEmpty(remove),remove,value->roleService.removeRoles(id,remove));
     }
 
     /**

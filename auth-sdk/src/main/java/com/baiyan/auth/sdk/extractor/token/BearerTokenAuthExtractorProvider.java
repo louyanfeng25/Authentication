@@ -1,7 +1,7 @@
 package com.baiyan.auth.sdk.extractor.token;
 
 import com.baiyan.auth.api.constant.AuthConstant;
-import org.apache.commons.lang3.StringUtils;
+import com.baiyan.common.base.utils.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +22,7 @@ public class BearerTokenAuthExtractorProvider implements TokenExtractorProvider 
     @Override
     public String extract(HttpServletRequest httpServletRequest) {
         String auth = httpServletRequest.getHeader(AuthConstant.HEADER_TOKEN_KEY);
-        if (StringUtils.isEmpty(auth)) {
+        if (StringUtil.isEmpty(auth)) {
             return null;
         }
         String[] strings = auth.split("\\s+");

@@ -1,10 +1,5 @@
 package com.baiyan.auth.service.service.impl;
 
-import com.baiyan.auth.common.model.query.KeywordQuery;
-import com.baiyan.auth.common.result.Page;
-import com.baiyan.auth.common.utils.CollectionUtil;
-import com.baiyan.auth.common.utils.JavaUtil;
-import com.baiyan.auth.common.utils.ValidationUtil;
 import com.baiyan.auth.service.enums.YesNoEnum;
 import com.baiyan.auth.service.mapper.RoleMapper;
 import com.baiyan.auth.service.mapper.UserRoleMapper;
@@ -17,6 +12,11 @@ import com.baiyan.auth.service.model.role.po.RolePO;
 import com.baiyan.auth.service.model.role.po.UserRolePO;
 import com.baiyan.auth.service.service.MenuService;
 import com.baiyan.auth.service.service.RoleService;
+import com.baiyan.common.base.model.query.KeywordQuery;
+import com.baiyan.common.base.result.Page;
+import com.baiyan.common.base.utils.CollectionUtils;
+import com.baiyan.common.base.utils.JavaUtil;
+import com.baiyan.common.base.utils.ValidationUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
@@ -48,7 +48,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RolePO> implements 
             return null;
         }
         List<UserRolePO> pos = userRoleMapper.selectList(Wrappers.<UserRolePO>lambdaQuery().eq(UserRolePO::getUserId, userId));
-        if(CollectionUtil.isEmpty(pos)){
+        if(CollectionUtils.isEmpty(pos)){
             return null;
         }
         return pos.stream().map(UserRolePO::getRoleId).collect(Collectors.toList());
@@ -64,7 +64,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RolePO> implements 
     @Transactional(rollbackFor = Exception.class)
     public void addRoles(Long userId,List<Long> roleIds){
         ValidationUtil.isTrue(Objects.nonNull(userId),"role.userId.is.blank");
-        ValidationUtil.isTrue(CollectionUtil.isNotEmpty(roleIds),"role.roleIds.is.blank");
+        ValidationUtil.isTrue(CollectionUtils.isNotEmpty(roleIds),"role.roleIds.is.blank");
         List<Long> allRoleIds = getBaseMapper().selectList(Wrappers.<RolePO>lambdaQuery().select(RolePO::getId))
                 .stream().map(RolePO::getId).collect(Collectors.toList());
         List<UserRolePO> pos = roleIds.stream().map(roleId -> {
@@ -78,7 +78,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RolePO> implements 
     @Transactional(rollbackFor = Exception.class)
     public void removeRoles(Long userId,List<Long> roleIds){
         ValidationUtil.isTrue(Objects.nonNull(userId),"role.userId.is.blank");
-        ValidationUtil.isTrue(CollectionUtil.isNotEmpty(roleIds),"role.roleIds.is.blank");
+        ValidationUtil.isTrue(CollectionUtils.isNotEmpty(roleIds),"role.roleIds.is.blank");
         userRoleMapper.delete(Wrappers.<UserRolePO>lambdaQuery()
                 .eq(UserRolePO::getUserId,userId)
                 .in(UserRolePO::getRoleId,roleIds)
@@ -168,8 +168,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RolePO> implements 
         List<Long> remove = nowMenus.stream().filter(menuId->!menus.contains(menuId))
                 .collect(Collectors.toList());
         JavaUtil.getJavaUtil()
-                .acceptIfCondition(CollectionUtil.isNotEmpty(remove),remove,menuService::deleteRoleMenuByRoleIds)
-                .acceptIfCondition(CollectionUtil.isNotEmpty(add),add,value->{
+                .acceptIfCondition(CollectionUtils.isNotEmpty(remove),remove,menuService::deleteRoleMenuByRoleIds)
+                .acceptIfCondition(CollectionUtils.isNotEmpty(add),add,value->{
                             List<RoleMenuPO> pos = value.stream().map(e ->
                                     new RoleMenuPO(roleId, e)).collect(Collectors.toList()
                             );

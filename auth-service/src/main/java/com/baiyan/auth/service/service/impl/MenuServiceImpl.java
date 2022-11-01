@@ -1,6 +1,5 @@
 package com.baiyan.auth.service.service.impl;
 
-import com.baiyan.auth.common.utils.CollectionUtil;
 import com.baiyan.auth.service.enums.YesNoEnum;
 import com.baiyan.auth.service.mapper.MenuMapper;
 import com.baiyan.auth.service.mapper.RoleMenuMapper;
@@ -10,6 +9,7 @@ import com.baiyan.auth.service.model.menu.po.RoleMenuPO;
 import com.baiyan.auth.service.service.MenuService;
 import com.baiyan.auth.service.service.RoleService;
 import com.baiyan.auth.service.utils.MenuDelegates;
+import com.baiyan.common.base.utils.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +44,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuPO> implements 
             menuIds = this.listMenuIdsByRoleIds(roleIds);
         }
         List<MenuPO> menuPOS = getBaseMapper().selectList(Wrappers.<MenuPO>lambdaQuery()
-                .in(CollectionUtil.isNotEmpty(menuIds),MenuPO::getId,menuIds)
+                .in(CollectionUtils.isNotEmpty(menuIds),MenuPO::getId,menuIds)
                 .eq(MenuPO::getDisable, YesNoEnum.NO.getKey())
                 .orderByAsc(MenuPO::getId));
         return MenuDelegates.buildTree(menuPOS, null);
@@ -53,7 +53,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuPO> implements 
     @Override
     public List<String> listByRoleIds(List<Long> roleIds){
         List<Long> menuIds = this.listMenuIdsByRoleIds(roleIds);
-        if(CollectionUtil.isEmpty(menuIds)){
+        if(CollectionUtils.isEmpty(menuIds)){
             return null;
         }
         List<MenuPO> menuPos = getBaseMapper().selectList(Wrappers.<MenuPO>lambdaQuery()
@@ -67,14 +67,14 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuPO> implements 
 
     @Override
     public List<Long> listMenuIdsByRoleIds(List<Long> roleIds){
-        if(CollectionUtil.isEmpty(roleIds)){
+        if(CollectionUtils.isEmpty(roleIds)){
             return null;
         }
         List<RoleMenuPO> roleMenus = roleMenuMapper.selectList(Wrappers.<RoleMenuPO>lambdaQuery()
                 .in(RoleMenuPO::getRoleId, roleIds)
                 .select(RoleMenuPO::getMenuId)
         );
-        if (CollectionUtil.isEmpty(roleMenus)){
+        if (CollectionUtils.isEmpty(roleMenus)){
             return null;
         }
         return roleMenus.stream().map(RoleMenuPO::getMenuId)
@@ -90,7 +90,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuPO> implements 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteRoleMenuByRoleIds(List<Long> roleIds){
-        if(CollectionUtil.isEmpty(roleIds)){
+        if(CollectionUtils.isEmpty(roleIds)){
             return;
         }
         roleMenuMapper.delete(Wrappers.<RoleMenuPO>lambdaQuery().in(RoleMenuPO::getRoleId,roleIds));

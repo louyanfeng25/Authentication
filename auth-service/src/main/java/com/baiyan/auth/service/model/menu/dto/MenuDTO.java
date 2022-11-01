@@ -1,6 +1,6 @@
 package com.baiyan.auth.service.model.menu.dto;
 
-import com.baiyan.auth.common.utils.tree.IDTree;
+import com.baiyan.common.base.utils.tree.IDTree;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;

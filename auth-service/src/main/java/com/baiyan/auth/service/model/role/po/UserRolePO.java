@@ -1,6 +1,6 @@
 package com.baiyan.auth.service.model.role.po;
 
-import com.baiyan.auth.common.model.po.BaseUuidEntity;
+import com.baiyan.common.base.model.po.BaseUuidEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 

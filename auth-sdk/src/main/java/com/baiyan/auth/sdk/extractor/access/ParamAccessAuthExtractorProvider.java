@@ -1,7 +1,7 @@
 package com.baiyan.auth.sdk.extractor.access;
 
 import com.baiyan.auth.api.constant.AuthConstant;
-import org.apache.commons.lang3.StringUtils;
+import com.baiyan.common.base.utils.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +22,7 @@ public class ParamAccessAuthExtractorProvider implements AccessExtractorProvider
     @Override
     public String extract(HttpServletRequest httpServletRequest) {
         String auth = httpServletRequest.getParameter(AuthConstant.PARAM_ACCESS_KEY);
-        if (StringUtils.isEmpty(auth)) {
+        if (StringUtil.isEmpty(auth)) {
             return null;
         }
         return auth;

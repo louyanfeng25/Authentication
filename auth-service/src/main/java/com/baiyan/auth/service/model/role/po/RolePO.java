@@ -1,7 +1,7 @@
 package com.baiyan.auth.service.model.role.po;
 
-import com.baiyan.auth.common.model.po.BaseUuidEntity;
 import com.baiyan.auth.service.model.role.dto.RoleCommandDTO;
+import com.baiyan.common.base.model.po.BaseUuidEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
@@ -18,7 +18,7 @@ import org.springframework.beans.BeanUtils;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("t_role")
-public class RolePO extends BaseUuidEntity  {
+public class RolePO extends BaseUuidEntity {
 
     /** 角色名称 */
     private String name;

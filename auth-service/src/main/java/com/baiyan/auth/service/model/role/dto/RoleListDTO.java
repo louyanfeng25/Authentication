@@ -1,7 +1,7 @@
 package com.baiyan.auth.service.model.role.dto;
 
-import com.baiyan.auth.common.utils.StringUtil;
 import com.baiyan.auth.service.model.role.bo.RoleBO;
+import com.baiyan.common.base.utils.StringUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

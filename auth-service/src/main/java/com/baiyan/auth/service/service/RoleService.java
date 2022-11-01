@@ -1,11 +1,11 @@
 package com.baiyan.auth.service.service;
 
-import com.baiyan.auth.common.model.query.KeywordQuery;
-import com.baiyan.auth.common.result.Page;
 import com.baiyan.auth.service.model.role.dto.RoleCommandDTO;
 import com.baiyan.auth.service.model.role.dto.RoleDetailDTO;
 import com.baiyan.auth.service.model.role.dto.RoleListDTO;
 import com.baiyan.auth.service.model.role.po.RolePO;
+import com.baiyan.common.base.model.query.KeywordQuery;
+import com.baiyan.common.base.result.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

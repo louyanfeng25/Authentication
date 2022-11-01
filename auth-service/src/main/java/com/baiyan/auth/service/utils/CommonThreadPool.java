@@ -1,8 +1,8 @@
 package com.baiyan.auth.service.utils;
 
 
-import com.baiyan.auth.common.utils.threadpool.ThreadPoolService;
-import com.baiyan.auth.common.utils.threadpool.ThreadPoolServiceImpl;
+import com.baiyan.common.base.utils.threadpool.ThreadPoolService;
+import com.baiyan.common.base.utils.threadpool.ThreadPoolServiceImpl;
 
 /**
  * 通用线程池

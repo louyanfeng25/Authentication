@@ -2,7 +2,7 @@ package com.baiyan.auth.sdk.util;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.baiyan.auth.api.model.user.UserDTO;
-import com.baiyan.auth.common.utils.ValidationUtil;
+import com.baiyan.common.base.utils.ValidationUtil;
 
 /**
  * @author baiyan

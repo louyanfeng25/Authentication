@@ -1,10 +1,10 @@
 package com.baiyan.auth.web;
 
-import com.baiyan.auth.common.result.Result;
 import com.baiyan.auth.config.VersionConfig;
 import com.baiyan.auth.sdk.util.ThreadLocalUtil;
 import com.baiyan.auth.service.model.access.dto.*;
 import com.baiyan.auth.service.service.AccessService;
+import com.baiyan.common.base.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

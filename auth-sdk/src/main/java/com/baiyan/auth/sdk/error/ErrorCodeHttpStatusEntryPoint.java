@@ -1,7 +1,7 @@
 package com.baiyan.auth.sdk.error;
 
-import com.baiyan.auth.common.result.Result;
-import com.baiyan.auth.common.utils.GsonUtil;
+import com.baiyan.common.base.result.Result;
+import com.baiyan.common.base.utils.GsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -62,7 +62,7 @@ public class ErrorCodeHttpStatusEntryPoint implements AuthenticationEntryPoint {
 		//请求成功，由业务判断失败的code
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-		response.getWriter().print(GsonUtil.gsonToString(Result.authError(httpStatus.value(),errorCode,message)));
+		response.getWriter().print(GsonUtil.gsonToString(Result.authError()));
 	}
 
 }

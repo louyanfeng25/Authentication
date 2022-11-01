@@ -1,12 +1,12 @@
 package com.baiyan.auth.service.model.user.po;
 
 import com.baiyan.auth.api.enums.UserStateEnum;
-import com.baiyan.auth.common.model.po.BaseUuidEntity;
-import com.baiyan.auth.common.utils.ValidationUtil;
 import com.baiyan.auth.service.enums.YesNoEnum;
 import com.baiyan.auth.service.model.user.dto.UserAddDTO;
 import com.baiyan.auth.service.model.user.dto.UserUpdateDTO;
 import com.baiyan.auth.service.utils.PasswordUtil;
+import com.baiyan.common.base.model.po.BaseUuidEntity;
+import com.baiyan.common.base.utils.ValidationUtil;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 import org.springframework.beans.BeanUtils;

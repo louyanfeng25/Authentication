@@ -1,6 +1,6 @@
 package com.baiyan.auth.api.enums;
 
-import com.baiyan.auth.common.exception.ValidationException;
+import com.baiyan.common.base.exception.ValidationException;
 import lombok.Getter;
 
 import java.util.Objects;

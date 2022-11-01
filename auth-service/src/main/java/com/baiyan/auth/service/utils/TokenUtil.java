@@ -1,8 +1,8 @@
 package com.baiyan.auth.service.utils;
 
-import com.baiyan.auth.common.utils.SpringContextUtil;
-import com.baiyan.auth.common.utils.cache.CacheFactory;
 import com.baiyan.auth.service.config.LoginConfig;
+import com.baiyan.common.base.utils.cache.CacheFactory;
+import com.baiyan.common.service.util.SpringContextUtil;
 import com.google.common.cache.Cache;
 
 import java.util.UUID;

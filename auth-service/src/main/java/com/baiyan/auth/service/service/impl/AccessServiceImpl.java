@@ -1,8 +1,6 @@
 package com.baiyan.auth.service.service.impl;
 
 import com.baiyan.auth.api.model.user.UserDTO;
-import com.baiyan.auth.common.utils.CollectionUtil;
-import com.baiyan.auth.common.utils.ValidationUtil;
 import com.baiyan.auth.sdk.util.ThreadLocalUtil;
 import com.baiyan.auth.service.mapper.AccessMapper;
 import com.baiyan.auth.service.model.access.dto.AccessAddDTO;
@@ -12,6 +10,8 @@ import com.baiyan.auth.service.model.user.po.UserPO;
 import com.baiyan.auth.service.service.AccessService;
 import com.baiyan.auth.service.service.UserService;
 import com.baiyan.auth.service.utils.TokenUtil;
+import com.baiyan.common.base.utils.CollectionUtils;
+import com.baiyan.common.base.utils.ValidationUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +56,7 @@ public class AccessServiceImpl extends ServiceImpl<AccessMapper, AccessPO> imple
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteAccess(Long userId,List<Long> accessKeyIds){
-        if(CollectionUtil.isEmpty(accessKeyIds) || Objects.isNull(userId)){
+        if(CollectionUtils.isEmpty(accessKeyIds) || Objects.isNull(userId)){
             return;
         }
         getBaseMapper().delete(Wrappers.<AccessPO>lambdaQuery()
@@ -68,7 +68,7 @@ public class AccessServiceImpl extends ServiceImpl<AccessMapper, AccessPO> imple
     @Override
     public List<AccessDTO> queryAccess(Long userId, String keyword){
         List<AccessPO> accessPOS = getBaseMapper().accessList(userId, keyword);
-        return CollectionUtil.isEmpty(accessPOS) ? null : accessPOS.stream().map(AccessDTO::new)
+        return CollectionUtils.isEmpty(accessPOS) ? null : accessPOS.stream().map(AccessDTO::new)
                 .collect(Collectors.toList());
     }
 

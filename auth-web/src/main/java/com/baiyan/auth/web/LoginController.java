@@ -1,6 +1,5 @@
 package com.baiyan.auth.web;
 
-import com.baiyan.auth.common.result.Result;
 import com.baiyan.auth.config.VersionConfig;
 import com.baiyan.auth.sdk.exception.LoginResetPasswordException;
 import com.baiyan.auth.sdk.exception.LoginUserOnlineException;
@@ -12,6 +11,7 @@ import com.baiyan.auth.service.model.login.vo.LoginResetPasswordVO;
 import com.baiyan.auth.service.model.login.vo.LoginVO;
 import com.baiyan.auth.service.service.LoginService;
 import com.baiyan.auth.service.utils.AuthAesUtil;
+import com.baiyan.common.base.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +41,9 @@ public class LoginController {
             LoginResultDTO login = loginService.login(new LoginDTO(vo, request,times));
             return Result.success(login,"登录成功");
         }catch (LoginUserOnlineException e){
-            return Result.error(20001,null,e.getMessage());
+            return Result.error(20001,null,e.getMessage(),null);
         }catch (LoginResetPasswordException  e){
-            return Result.error(20002,null,e.getMessage());
+            return Result.error(20002,null,e.getMessage(),null);
         }
     }
 

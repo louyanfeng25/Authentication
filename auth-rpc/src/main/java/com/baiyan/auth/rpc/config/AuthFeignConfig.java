@@ -1,7 +1,7 @@
 package com.baiyan.auth.rpc.config;
 
 import com.baiyan.auth.api.constant.AuthConstant;
-import com.baiyan.auth.common.utils.StringUtil;
+import com.baiyan.common.base.utils.StringUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

@@ -17,6 +17,10 @@
             <artifactId>auth-service</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.baiyan</groupId>
+            <artifactId>baiyan-common-interaction</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>

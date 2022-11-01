@@ -1,9 +1,9 @@
 package com.baiyan.auth.web;
 
-import com.baiyan.auth.common.result.Result;
 import com.baiyan.auth.config.VersionConfig;
 import com.baiyan.auth.service.model.menu.dto.MenuDTO;
 import com.baiyan.auth.service.service.MenuService;
+import com.baiyan.common.base.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

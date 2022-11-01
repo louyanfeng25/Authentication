@@ -1,13 +1,13 @@
 package com.baiyan.auth.web;
 
-import com.baiyan.auth.common.model.query.KeywordQuery;
-import com.baiyan.auth.common.result.Page;
-import com.baiyan.auth.common.result.PageResult;
-import com.baiyan.auth.common.result.Result;
 import com.baiyan.auth.config.VersionConfig;
 import com.baiyan.auth.service.model.user.dto.*;
 import com.baiyan.auth.service.service.UserService;
 import com.baiyan.auth.service.utils.AuthAesUtil;
+import com.baiyan.common.base.model.query.KeywordQuery;
+import com.baiyan.common.base.result.Page;
+import com.baiyan.common.base.result.PageResult;
+import com.baiyan.common.base.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

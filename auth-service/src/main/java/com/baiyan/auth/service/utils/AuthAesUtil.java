@@ -1,9 +1,9 @@
 package com.baiyan.auth.service.utils;
 
-import com.baiyan.auth.common.exception.ValidationException;
-import com.baiyan.auth.common.utils.DateUtil;
+import com.baiyan.common.base.exception.ValidationException;
+import com.baiyan.common.base.utils.DateUtil;
+import com.baiyan.common.base.utils.StringUtil;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,7 @@ public class AuthAesUtil {
      */
     public static String decrypt(String str, HttpServletRequest request) {
         String headerTimes = request.getHeader(HEADER_TIMES);
-        if (StringUtils.isEmpty(headerTimes)) {
+        if (StringUtil.isEmpty(headerTimes)) {
             return "";
         }
         return AuthAesUtil.decrypt(str,headerTimes);

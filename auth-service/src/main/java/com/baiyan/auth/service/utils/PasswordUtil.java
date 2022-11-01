@@ -1,6 +1,6 @@
 package com.baiyan.auth.service.utils;
 
-import com.baiyan.auth.common.utils.ValidationUtil;
+import com.baiyan.common.base.utils.ValidationUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.Objects;
@@ -70,7 +70,7 @@ public class PasswordUtil {
         if(Objects.isNull(password)){
             return;
         }
-        Stream.of(password).forEach(pwd->ValidationUtil.isTrue(pwd.length()>=8 && pwd.length()<=16,
+        Stream.of(password).forEach(pwd-> ValidationUtil.isTrue(pwd.length()>=8 && pwd.length()<=16,
                 "login.password.is.too.lang"));
     }
 

@@ -4,12 +4,12 @@ import com.baiyan.auth.api.enums.UserStateEnum;
 import com.baiyan.auth.api.model.permission.PermissionDTO;
 import com.baiyan.auth.api.model.role.RoleDTO;
 import com.baiyan.auth.api.model.user.UserDTO;
-import com.baiyan.auth.common.utils.CollectionUtil;
-import com.baiyan.auth.common.utils.ValidationUtil;
 import com.baiyan.auth.service.model.menu.po.MenuPO;
 import com.baiyan.auth.service.model.role.po.RolePO;
 import com.baiyan.auth.service.model.user.po.UserPO;
 import com.baiyan.auth.service.service.*;
+import com.baiyan.common.base.utils.CollectionUtils;
+import com.baiyan.common.base.utils.ValidationUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,7 +97,7 @@ public class AuthServiceImpl implements AuthService {
      * @param userDTO
      */
     public void setRoleInfo(List<RolePO> roles, UserDTO userDTO){
-        if(CollectionUtil.isEmpty(roles)){
+        if(CollectionUtils.isEmpty(roles)){
             return;
         }
         List<RoleDTO> details = roles.stream().map(role -> new RoleDTO(role.getId(), role.getCode(), role.getName()))
@@ -111,7 +111,7 @@ public class AuthServiceImpl implements AuthService {
      * @return
      */
     public List<RolePO> getRoleInfo(List<Long> roleIds){
-        if(CollectionUtil.isEmpty(roleIds)){
+        if(CollectionUtils.isEmpty(roleIds)){
             return null;
         }
         return roleService.listByIds(roleIds);
@@ -127,7 +127,7 @@ public class AuthServiceImpl implements AuthService {
         List<Long> menuIds = menuService.listMenuIdsByRoleIds(roleIds);
         List<MenuPO> menuPos = Optional.ofNullable(menuIds).map(menuService::listByIds)
                 .orElse(null);
-        if(CollectionUtil.isEmpty(menuPos)){
+        if(CollectionUtils.isEmpty(menuPos)){
             return;
         }
         Optional.ofNullable(menuService.listByIds(menuIds)).ifPresent(menuPOS -> {

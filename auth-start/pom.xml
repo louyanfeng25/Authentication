@@ -17,6 +17,10 @@
             <groupId>com.baiyan</groupId>
             <artifactId>auth-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.baiyan</groupId>
+            <artifactId>baiyan-common-start</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
