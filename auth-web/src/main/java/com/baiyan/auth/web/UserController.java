@@ -8,6 +8,7 @@ import com.baiyan.common.base.model.query.KeywordQuery;
 import com.baiyan.common.base.result.Page;
 import com.baiyan.common.base.result.PageResult;
 import com.baiyan.common.base.result.Result;
+import com.baiyan.common.interaction.annotation.WebRestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import javax.validation.Valid;
  * @time 2020/11/13 11:27
  */
 @Api(tags = "用户管理web接口")
-@RestController
+@WebRestController
 @RequestMapping(VersionConfig.COMMON_WEB_VERSION_URL+"user")
 public class UserController {
 

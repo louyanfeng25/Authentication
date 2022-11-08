@@ -12,6 +12,7 @@ import com.baiyan.auth.service.model.login.vo.LoginVO;
 import com.baiyan.auth.service.service.LoginService;
 import com.baiyan.auth.service.utils.AuthAesUtil;
 import com.baiyan.common.base.result.Result;
+import com.baiyan.common.interaction.annotation.WebRestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ import javax.validation.Valid;
  * @time 2020/11/13 11:27
  */
 @Api(tags = "登录管理web接口")
-@RestController
+@WebRestController
 @RequestMapping(VersionConfig.COMMON_WEB_VERSION_URL+"login")
 public class LoginController {
 

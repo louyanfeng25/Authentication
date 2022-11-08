@@ -3,12 +3,13 @@ package com.baiyan.auth.sdk.configuration;
 import com.baiyan.auth.sdk.auth.TokenAuthenticationProcessingFilter;
 import com.baiyan.auth.sdk.auth.access.AccessAuthenticationProvider;
 import com.baiyan.auth.sdk.auth.token.TokenAuthenticationProvider;
-import com.baiyan.auth.sdk.error.AccessForbiddenEntryPoint;
+import com.baiyan.auth.sdk.error.CustomAccessDenyHandler;
 import com.baiyan.auth.sdk.extractor.access.AccessAuthExtractor;
 import com.baiyan.auth.sdk.extractor.access.AccessAuthProviderConfiguration;
 import com.baiyan.auth.sdk.extractor.token.TokenAuthExtractor;
 import com.baiyan.auth.sdk.extractor.token.TokenAuthProviderConfiguration;
 import com.baiyan.auth.sdk.model.AuthHandle;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
@@ -51,6 +52,9 @@ public class TokenAuthenticationResourceConfiguration extends WebSecurityConfigu
     @Autowired
     private AuthProperties authProperties;
 
+    @Autowired
+    private AuthenticationFailureHandler baiyanAuthFailHandler;
+
     /**
      * 鉴权方式配置
      *
@@ -70,16 +74,6 @@ public class TokenAuthenticationResourceConfiguration extends WebSecurityConfigu
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        AuthenticationEntryPoint authenticationEntryPoint = new AccessForbiddenEntryPoint();
-        TokenAuthenticationProcessingFilter tokenAuthenticationProcessingFilter = new TokenAuthenticationProcessingFilter();
-        AuthHandle authHandle = new AuthHandle();
-        authHandle.setAuthenticationEventPublisher(authenticationEventPublisher);
-        authHandle.setAuthenticationManager(authenticationManager());
-        authHandle.setTokenAuthExtractor(tokenAuthExtractor);
-        authHandle.setAccessAuthExtractor(accessAuthExtractor);
-        tokenAuthenticationProcessingFilter.setAuthHandle(authHandle);
-
         http
             .requestMatcher(authMatcher())
             .authorizeRequests()
@@ -89,10 +83,21 @@ public class TokenAuthenticationResourceConfiguration extends WebSecurityConfigu
                 .sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and()
             .csrf().disable()
-            .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+            .exceptionHandling()
+                .accessDeniedHandler(new CustomAccessDenyHandler())
                 .and()
-            .addFilterBefore(tokenAuthenticationProcessingFilter, BasicAuthenticationFilter.class);
+            .addFilterBefore(buildDefaultFilter(), BasicAuthenticationFilter.class);
+    }
 
+    @SneakyThrows
+    private TokenAuthenticationProcessingFilter buildDefaultFilter(){
+        AuthHandle authHandle = new AuthHandle();
+        authHandle.setAuthenticationEventPublisher(authenticationEventPublisher);
+        authHandle.setAuthenticationManager(authenticationManager());
+        authHandle.setTokenAuthExtractor(tokenAuthExtractor);
+        authHandle.setAccessAuthExtractor(accessAuthExtractor);
+        authHandle.setFailureHandler(baiyanAuthFailHandler);
+        return new TokenAuthenticationProcessingFilter(authMatcher(),authHandle);
     }
 
     /**

@@ -5,6 +5,7 @@ import com.baiyan.auth.sdk.util.ThreadLocalUtil;
 import com.baiyan.auth.service.model.access.dto.*;
 import com.baiyan.auth.service.service.AccessService;
 import com.baiyan.common.base.result.Result;
+import com.baiyan.common.interaction.annotation.WebRestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.List;
  * @time 2020/12/09
  */
 @Api(tags = "通行证管理web接口")
-@RestController
+@WebRestController
 @RequestMapping(VersionConfig.COMMON_WEB_VERSION_URL+"access")
 public class AccessController {
 
@@ -35,6 +36,7 @@ public class AccessController {
 
     @ApiOperation(value = "个人增加通行证")
     @PostMapping("individual")
+    @PreAuthorize("hasAuthority('successss')")
     public Result<String> add(@RequestBody @Valid AccessIndividualAddDTO dto) {
         AccessAddDTO addDTO = new AccessAddDTO();
         addDTO.setRemark(dto.getRemark());

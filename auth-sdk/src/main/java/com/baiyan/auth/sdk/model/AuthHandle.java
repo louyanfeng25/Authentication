@@ -5,6 +5,7 @@ import com.baiyan.auth.sdk.extractor.token.TokenAuthExtractor;
 import lombok.Data;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 /**
  * 鉴权处理
@@ -34,5 +35,10 @@ public class AuthHandle {
      * 解析链路管理
      */
     private AuthenticationManager authenticationManager;
+
+    /**
+     * 异常处理
+     */
+    private AuthenticationFailureHandler failureHandler;
 
 }

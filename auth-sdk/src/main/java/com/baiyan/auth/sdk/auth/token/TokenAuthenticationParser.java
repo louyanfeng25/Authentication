@@ -23,21 +23,22 @@ import java.util.Objects;
 @Slf4j
 public class TokenAuthenticationParser{
 
-    public static void parser(AuthHandle authHandle, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
+    public static Authentication parser(AuthHandle authHandle, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
         TokenAuthentication token = authHandle.getTokenAuthExtractor().extract(httpServletRequest);
+        Authentication authenticate = null;
         if (Objects.nonNull(token)) {
-            Authentication authenticate;
             try {
                 authenticate = authHandle.getAuthenticationManager().authenticate(token);
             } catch (AuthenticationException e) {
                 log.error("token鉴权失败：",e);
                 authHandle.getAuthenticationEventPublisher().publishAuthenticationFailure(e, token);
-                return;
+                return null;
             }
             httpServletRequest.setAttribute(AuthConstant.USER_DETAIL, authenticate.getDetails());
             SecurityContextHolder.getContext().setAuthentication(authenticate);
             authHandle.getAuthenticationEventPublisher().publishAuthenticationSuccess(authenticate);
         }
+        return authenticate;
     }
 
 
