@@ -1,12 +1,13 @@
 server:
-  port: 8888
-
+  port: 8889
+---
 spring:
+  profiles: local
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/auth_test?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/user?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       initial-size: 5
@@ -37,11 +38,11 @@ spring:
         login-password: 123456
         allow:
         deny:
-  flyway:
-    baseline-on-migrate: true
-    enabled: true
-    locations: classpath:/db/migration
-    out-of-order: true
+    flyway:
+      baseline-on-migrate: true
+      enabled: true
+      locations: classpath:/db/migration
+      out-of-order: true
 
 logging:
   level:
@@ -69,8 +70,8 @@ swagger:
     enable: true
     groupName: baiyan
     basePackage: com.baiyan.auth
-    title: description
-    description: baiyan鉴权中心api
+    title: 柏炎鉴权中心
+    description: 柏炎鉴权中心api
     version: 1.0.0-SNAPSHOT
 
 # web seronfig
@@ -78,3 +79,8 @@ baiyan:
   config:
     jackson:
       enable: true
+---
+spring:
+  profiles: prod
+server:
+  port: 8883

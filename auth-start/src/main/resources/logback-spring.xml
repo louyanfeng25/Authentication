@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 控制台输出 -->
+    <property name="PATTERN" value="- %d{yyyy-MM-dd HH:mm:ss.SSS}, %5p, [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId}], [%thread], %logger{39} - %m%n" />
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="local">
+        <logger name="com.baiyan.auth.mapper" level="DEBUG"/>
+        <logger name="com.baiyan.auth.service" level="DEBUG"/>
+        <logger name="com.baiyan.auth.config" level="DEBUG"/>
+        <logger name="java.sql" level="DEBUG"/>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="ERROR_FILE" />
+            <appender-ref ref="INFO_FILE" />
+        </root>
+    </springProfile>
+
+
+</configuration>

@@ -1,7 +1,10 @@
 package com.baiyan.auth.service.utils;
 
+import com.baiyan.common.base.utils.DateUtil;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.time.LocalDateTime;
 import java.util.Base64;
 
 /**
@@ -91,15 +94,5 @@ public class AesUtil {
             d[i >> 1] |= Character.digit((char) b[offset + i], 16) << shift;
         }
         return d;
-    }
-
-    public static void main(String[] args) throws Exception {
-        String key = AuthAesUtil.encodeTime("2020-11-23 09:09:09");
-        System.out.println(key);
-        String encode1 = new AesUtil(key).encryptData("2wsxVFR_");
-        String encode2 = new AesUtil(key).encryptData("1432573370");
-        System.out.println(PasswordUtil.encodePassword("1432573370"));
-        System.out.println(encode1);
-        System.out.println(encode2);
     }
 }

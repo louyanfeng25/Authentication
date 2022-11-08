@@ -83,25 +83,6 @@
     </dependencyManagement>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>config/**</exclude>
-                    <exclude>templates/**</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources/config/${env}</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources/templates</directory>
-                <targetPath>templates</targetPath>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

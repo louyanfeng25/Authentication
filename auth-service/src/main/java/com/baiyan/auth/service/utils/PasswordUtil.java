@@ -1,7 +1,7 @@
 package com.baiyan.auth.service.utils;
 
+import cn.hutool.crypto.digest.MD5;
 import com.baiyan.common.base.utils.ValidationUtil;
-import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.Objects;
 import java.util.Random;
@@ -37,7 +37,7 @@ public class PasswordUtil {
      * @return 数据库存储密码
      */
     public static String encodePassword(String password){
-        return DigestUtils.sha1Hex(password);
+        return MD5.create().digestHex(password);
     }
 
     /**
@@ -72,13 +72,6 @@ public class PasswordUtil {
         }
         Stream.of(password).forEach(pwd-> ValidationUtil.isTrue(pwd.length()>=8 && pwd.length()<=16,
                 "login.password.is.too.lang"));
-    }
-
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            System.out.println(defaultPassword());
-        }
     }
 
 }

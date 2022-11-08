@@ -1,4 +1,6 @@
+---
 spring:
+  profiles: local
   application:
     name: auth
   cloud:
@@ -29,3 +31,18 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 20000
+---
+spring:
+  profiles: prod
+  application:
+    name: auth
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP
+        fileExtension: yaml
+        shared-configs[0]:
+          data-id: application.yaml
+          group: DEFAULT_GROUP
+          refresh: true

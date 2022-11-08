@@ -1,9 +1,9 @@
 package com.baiyan.auth.service.utils;
 
+import cn.hutool.crypto.digest.MD5;
 import com.baiyan.common.base.exception.ValidationException;
 import com.baiyan.common.base.utils.DateUtil;
 import com.baiyan.common.base.utils.StringUtil;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,7 +70,7 @@ public class AuthAesUtil {
         LocalDateTime localDateTime = DateUtil.stringToLocalDateTime(time);
         //生成打乱的时间字符串
         String key = DateUtil.formatTimeString(localDateTime,DateUtil.YYYYMMDDHHMMSS);
-        return DigestUtils.md5Hex(key);
+        return MD5.create().digestHex(key);
     }
 
 }
