@@ -24,7 +24,7 @@ spring:
       max-pool-prepared-statement-per-connection-size: -1
       filters: stat,wall
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-      aop-patterns: com.baiyan.bulletinwarning.service.service.*
+      aop-patterns: com.baiyan.service.*
       web-stat-filter:
         enabled: true
         url-pattern: /*
@@ -53,6 +53,7 @@ mybatis:
     map-underscore-to-camel-case: true
   mapper-locations: classpath*:mapper/*.xml
 
+# login config
 auth:
   login:
     config:
@@ -61,3 +62,19 @@ auth:
       tokenTimeout: 86400
   resourceApi: /api/**
   exclude: /api/**/api-docs
+
+# swagger config
+swagger:
+  config:
+    enable: true
+    groupName: baiyan
+    basePackage: com.baiyan.auth
+    title: description
+    description: baiyan鉴权中心api
+    version: 1.0.0-SNAPSHOT
+
+# web seronfig
+baiyan:
+  config:
+    jackson:
+      enable: true
