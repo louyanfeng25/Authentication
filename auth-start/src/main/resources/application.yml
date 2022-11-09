@@ -74,7 +74,7 @@ swagger:
     description: 柏炎鉴权中心api
     version: 1.0.0-SNAPSHOT
 
-# web seronfig
+# web serializable config
 baiyan:
   config:
     jackson:
